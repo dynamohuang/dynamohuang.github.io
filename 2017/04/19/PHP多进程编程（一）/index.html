@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="PHP多进程编程初步 最近由于工作需要使用php做个爬虫程序,说道爬虫必然会想到python，其实php加上多进程特性，MQ队列服务,一样可以杠杠的满足常规需求。下面我讲分几篇文章来介绍实现实现原理。 在这篇文章将会介绍一下PHP多进程的基本需求，如何创建多进程以及基本的信号控制，暂时不会告诉你如何进行进程间通信和信息共享。主要是些基础的东西让你对php多进程编程有个初步的认识。 准备在动手之前，">
+<meta name="description" content="PHP多进程编程初步 最近由于工作需要使用php做个爬虫程序,说道爬虫必然会想到python，其实php加上多进程特性，MQ队列服务,一样可以杠杠的满足常规需求。下面我讲分几篇文章来介绍实现实现原理。 在这篇文章将会介绍一下PHP多进程的基础概念，如何创建多进程以及基本的信号控制，暂时不会告诉你如何进行进程间通信和信息共享。主要是些基础的东西让你对php多进程编程有个初步的认识。 准备在动手之前，">
 <meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP多进程编程（一）">
 <meta property="og:url" content="http://dynamohuang.github.io/2017/04/19/PHP多进程编程（一）/index.html">
 <meta property="og:site_name" content="蓝山小智">
-<meta property="og:description" content="PHP多进程编程初步 最近由于工作需要使用php做个爬虫程序,说道爬虫必然会想到python，其实php加上多进程特性，MQ队列服务,一样可以杠杠的满足常规需求。下面我讲分几篇文章来介绍实现实现原理。 在这篇文章将会介绍一下PHP多进程的基本需求，如何创建多进程以及基本的信号控制，暂时不会告诉你如何进行进程间通信和信息共享。主要是些基础的东西让你对php多进程编程有个初步的认识。 准备在动手之前，">
-<meta property="og:updated_time" content="2017-04-21T02:45:42.000Z">
+<meta property="og:description" content="PHP多进程编程初步 最近由于工作需要使用php做个爬虫程序,说道爬虫必然会想到python，其实php加上多进程特性，MQ队列服务,一样可以杠杠的满足常规需求。下面我讲分几篇文章来介绍实现实现原理。 在这篇文章将会介绍一下PHP多进程的基础概念，如何创建多进程以及基本的信号控制，暂时不会告诉你如何进行进程间通信和信息共享。主要是些基础的东西让你对php多进程编程有个初步的认识。 准备在动手之前，">
+<meta property="og:updated_time" content="2017-04-21T03:13:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP多进程编程（一）">
-<meta name="twitter:description" content="PHP多进程编程初步 最近由于工作需要使用php做个爬虫程序,说道爬虫必然会想到python，其实php加上多进程特性，MQ队列服务,一样可以杠杠的满足常规需求。下面我讲分几篇文章来介绍实现实现原理。 在这篇文章将会介绍一下PHP多进程的基本需求，如何创建多进程以及基本的信号控制，暂时不会告诉你如何进行进程间通信和信息共享。主要是些基础的东西让你对php多进程编程有个初步的认识。 准备在动手之前，">
+<meta name="twitter:description" content="PHP多进程编程初步 最近由于工作需要使用php做个爬虫程序,说道爬虫必然会想到python，其实php加上多进程特性，MQ队列服务,一样可以杠杠的满足常规需求。下面我讲分几篇文章来介绍实现实现原理。 在这篇文章将会介绍一下PHP多进程的基础概念，如何创建多进程以及基本的信号控制，暂时不会告诉你如何进行进程间通信和信息共享。主要是些基础的东西让你对php多进程编程有个初步的认识。 准备在动手之前，">
 
 
 
@@ -335,14 +335,14 @@
       
         <h1 id="PHP多进程编程初步"><a href="#PHP多进程编程初步" class="headerlink" title="PHP多进程编程初步"></a>PHP多进程编程初步</h1><hr>
 <p>最近由于工作需要使用php做个爬虫程序,说道爬虫必然会想到python，其实php加上多进程特性，MQ队列服务,一样可以杠杠的满足常规需求。下面我讲分几篇文章来介绍实现实现原理。</p>
-<p>在这篇文章将会介绍一下PHP多进程的基本需求，如何创建多进程以及基本的信号控制，暂时不会告诉你如何进行进程间通信和信息共享。主要是些基础的东西让你对php多进程编程有个初步的认识。</p>
+<p>在这篇文章将会介绍一下PHP多进程的基础概念，如何创建多进程以及基本的信号控制，暂时不会告诉你如何进行进程间通信和信息共享。主要是些基础的东西让你对php多进程编程有个初步的认识。</p>
 <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>在动手之前，请确定你用的不是M$ Windows平台（因为我没有Windows）。Linux / BSD / Unix应该都是没问题的。确认好了工作环境以后一起来看看我们需要的PHP模块是否都有。打开终端输入下面的命令：</p>
 <pre><code>$ php -m
 </code></pre><p>这个命令检查并打印当前PHP所有开启的扩展，看一下pcntl和posix是否在输出的列表中。</p>
 <h3 id="pcntl"><a href="#pcntl" class="headerlink" title="pcntl"></a>pcntl</h3><p>如果找不到pcntl，八成是编译的时候没把这个扩展编译进去。如果你和我一样是编译安装的PHP，那么需要重新编译安装PHP。在配置的时候记得加上–enable-pcntl参数即可。</p>
 <pre><code>$ cd /path/to/php_source_code_dir 
 $ ./configure [some other options] --enable-pcntl
-$ make &amp;&amp; make install
+$ make &amp;&amp; make install    
 </code></pre><h3 id="posix"><a href="#posix" class="headerlink" title="posix"></a>posix</h3><p>这货一般默认就会装上，只要你编译的时候没有加上–disable-posix。</p>
 <h2 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h2><p>这里对多进程的概率一定要有个基础的了解，所以当初连操作系统的课翘了的小伙伴还是要还的咯，然后我们一起打开<a href="https://secure.php.net/manual/zh/book.pcntl.php" target="_blank" rel="external">手册</a>吧，我建议有条件的还是看英文版的，中文翻译我就发现了个坑，待会儿一起来看。 </p>
 <h2 id="分身有术"><a href="#分身有术" class="headerlink" title="分身有术"></a>分身有术</h2><p>所以呢，没有点基础知识怎么能理解文档里的内容呢？打开文档首先看到了一个单词：fork。</p>
