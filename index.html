@@ -91,6 +91,7 @@
 <meta property="og:title" content="蓝山小智">
 <meta property="og:url" content="http://dynamohuang.github.io/index.html">
 <meta property="og:site_name" content="蓝山小智">
+<meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="蓝山小智">
 
@@ -336,6 +337,173 @@
         
           
             <p>原<a href="http://blog.csdn.net/myphpnotes" target="_blank" rel="external">一个phper的技术笔记</a>,已搬迁到该地址。说来惭愧，最近两年由于各种原因，没持续更新博客了。怀念过去csdn的校园岁月，时光飞逝去。感谢hexo，继续记录我的技术点滴。<br><img src="/images/pasted-0.png" alt="upload successful"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://dynamohuang.github.io/2017/09/01/Untitled/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dynamo Huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蓝山小智">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/09/01/Untitled/" itemprop="url">
+                  CentOS 7.3 编译安装 Mysql 5.7
+                </a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-01T11:05:09+08:00">
+                2017-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/01/Untitled/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/01/Untitled/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="安装前的准备"><a href="#安装前的准备" class="headerlink" title="安装前的准备"></a>安装前的准备</h3><ul>
+<li><p>软件准备</p>
+<p>  版本：mysql-5.7.17 （mysql5.7当前最新版）</p>
+<ul>
+<li><p><a href="https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.17.tar.gz" target="_blank" rel="external">下载地址</a></p>
+</li>
+<li><p><a href="https://dev.mysql.com/doc/refman/5.7/en/source-installation.html" target="_blank" rel="external">官方参考文档</a></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> wget https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.17.tar.gz</span></div><div class="line"></div><div class="line"><span class="meta">$</span><span class="bash"> sudo tar xzvf mysql-5.7.17.tar.gz -C /usr/<span class="built_in">local</span>/src/</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>安装依赖关系</p>
+  <figure class="highlight shell"><table><tr><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo yum install gcc gcc-c++ cmake bison bison-devel ncurses ncurses-devel autoconf</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>下载Boost</p>
+<p>  5.7 版本编译的时候需要Boost支持, 官方需要1.59.0, yum安装的是1.53.0, 因此编译安装</p>
+<p>  <strong>需要注意,这里有个坑,必须是1.59.0,版本高了也不行</strong></p>
+<p>  <a href="http://www.boost.org" target="_blank" rel="external">官网</a> , 下载后解压,编译时候使用</p>
+  <figure class="highlight shell"><table><tr><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> wget https://jaist.dl.sourceforge.net/project/boost/boost/1.59.0/boost_1_59_0.tar.gz</span></div><div class="line"><span class="meta">$</span><span class="bash"> sudo tar xzvf boost_1_59_0.tar.gz -C /usr/<span class="built_in">local</span>/src/</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>创建守护进程用户</p>
+  <figure class="highlight shell"><table><tr><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo useradd -M -s /sbin/nologin mysql</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h3><figure class="highlight shell"><table><tr><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src/mysql-5.7.17/</span></div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 创建编译目录进入</span></div><div class="line"><span class="meta">$</span><span class="bash"> sudo mkdir build</span></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> build</span></div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> cmake 创建make需要的文件（makefile等）</span></div><div class="line"><span class="meta">#</span><span class="bash"> 参数说明</span></div><div class="line"><span class="meta">#</span><span class="bash"> -DCMAKE_INSTALL_PREFIX= 指定安装目录</span></div><div class="line"><span class="meta">#</span><span class="bash"> -DEFAULT_CHARSET= 指定默认字符集，如果不设置，安装完成后也可以配置</span></div><div class="line"><span class="meta">$</span><span class="bash"> sudo cmake .. -DCMAKE_INSTALL_PREFIX=/usr/<span class="built_in">local</span>/mysql -DEFAULT_CHARSET=utf8mb4 -DWITH_BOOST=/usr/<span class="built_in">local</span>/src/boost_1_59_0 -DMYSQL_DATADIR=/data/mysql/data</span></div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 编译安装</span></div><div class="line"><span class="meta">$</span><span class="bash"> sudo make</span></div><div class="line"><span class="meta">$</span><span class="bash"> sudo make install</span></div></pre></td></tr></table></figure>
+<h3 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h3><p>非必须，不过不配置的话以后就都要绝对路径执行mysql命令……</p>
+<p>可以配置全局, 也可以配置当前用户, 我一般配置全局, 因为习惯平时使用普通用户, 会和root用户sudo或者su</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 在 /etc/profile.d 下创建一个mysql用的配置文件</span></div><div class="line"><span class="meta">#</span><span class="bash"> 建议不要直接写在/etc/profile 中, 功能上没有区别, 不过配置多了之后可读性差点</span></div><div class="line"><span class="meta">$</span><span class="bash"> sudo vim /etc/profile.d/mysql.sh</span></div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 写入下面内容</span></div><div class="line">export MYSQL_PATH=/usr/local/mysql</div><div class="line">export PATH=$PATH:$MYSQL_PATH/bin</div><div class="line"></div><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">source</span> /etc/profile.d/mysql.sh</span></div></pre></td></tr></table></figure>
+<h3 id="初始化配置文件"><a href="#初始化配置文件" class="headerlink" title="初始化配置文件"></a>初始化配置文件</h3><figure class="highlight shell"><table><tr><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo vim /etc/my.cnf</span></div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 写入下面内容</span></div><div class="line">[client]</div><div class="line"><span class="meta">#</span><span class="bash"> </span></div><div class="line">socket=/tmp/mysql.sock</div><div class="line"></div><div class="line">[mysqld]</div><div class="line">basedir=/usr/local/mysql</div><div class="line">datadir=/data/mysql/data</div><div class="line">socket=/tmp/mysql.sock</div><div class="line">character_set_filesystem = utf8</div><div class="line">character_set_server = utf8mb4</div><div class="line">symbolic-links=0</div><div class="line"></div><div class="line">log-error=/data/mysql/log/mysqld.log</div><div class="line">pid-file=/data/mysql/run/mysqld.pid</div></pre></td></tr></table></figure>
+<h3 id="初始化数据库"><a href="#初始化数据库" class="headerlink" title="初始化数据库"></a>初始化数据库</h3><figure class="highlight shell"><table><tr><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 创建数据库保存的目录,根据实际需要去创建了</span></div><div class="line"><span class="meta">$</span><span class="bash"> sudo mkdir -p /data/mysql/data</span></div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 授权</span></div><div class="line">sudo chown -R mysql:mysql /data/mysql</div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 创建数据仓库</span></div><div class="line"><span class="meta">$</span><span class="bash"> sudo /usr/<span class="built_in">local</span>/mysql/bin/mysqld --initialize --user=mysql --basedir=/usr/<span class="built_in">local</span>/mysql --datadir=/data/mysql/data --user=mysql</span></div></pre></td></tr></table></figure>
+<h3 id="开机自启动配置"><a href="#开机自启动配置" class="headerlink" title="开机自启动配置"></a>开机自启动配置</h3><figure class="highlight shell"><table><tr><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 复制启动脚本到init.d下面</span></div><div class="line"><span class="meta">$</span><span class="bash"> sudo cp /usr/<span class="built_in">local</span>/mysql/support-files/mysql.server /etc/init.d/mysqld</span></div><div class="line"><span class="meta">#</span><span class="bash"> 配置开机自动启动</span></div><div class="line"><span class="meta">$</span><span class="bash"> sudo /sbin/chkconfig mysqld on</span></div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 启动服务</span></div><div class="line"><span class="meta">$</span><span class="bash"> sudo /etc/init.d/mysqld start</span></div></pre></td></tr></table></figure>
+<h3 id="密码查看及修改"><a href="#密码查看及修改" class="headerlink" title="密码查看及修改"></a>密码查看及修改</h3><figure class="highlight shell"><table><tr><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 查看初始密码, 路径是参考配置文件中设置的日志路径</span></div><div class="line"><span class="meta">#</span><span class="bash"> Mysql 5.7 开始不再默认root密码为空, 没人将密码写到日志中</span></div><div class="line"><span class="meta">$</span><span class="bash"> sudo grep -i root@localhost /data/mysql/<span class="built_in">log</span>/mysqld.log</span></div><div class="line"></div><div class="line"><span class="meta">#</span><span class="bash"> 安全配置,主要是修改默认的root密码, 初始化的随机密码在上面的日志中,不好记，还能被别人看到</span></div><div class="line"><span class="meta">$</span><span class="bash"> mysql_secure_installation</span></div></pre></td></tr></table></figure>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>如果camke出现错误，比如缺少依赖等，处理完成后将CMakeCache.txt删除即可  <figure class="highlight shell"><table><tr><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> rm -rf CMakeCache.txt</span></div><div class="line"><span class="meta">$</span><span class="bash"> sudo make clean</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
 
           
         
@@ -873,7 +1041,7 @@ function excuteProcess($iPid, $iSeconds)
           
             <div class="site-state-item site-state-posts">
               <a href="/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
