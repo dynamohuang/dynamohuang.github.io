@@ -333,7 +333,7 @@
 $ ./configure [some other options] --enable-pcntl
 $ make &amp;&amp; make install    
 </code></pre><h3 id="posix"><a href="#posix" class="headerlink" title="posix"></a>posix</h3><p>这货一般默认就会装上，只要你编译的时候没有加上–disable-posix。</p>
-<h2 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h2><p>这里对多进程的概率一定要有个基础的了解，所以当初连操作系统的课翘了的小伙伴还是要还的咯，然后我们一起打开<a href="https://secure.php.net/manual/zh/book.pcntl.php" target="_blank" rel="external">手册</a>吧，我建议有条件的还是看英文版的，中文翻译我就发现了个坑，待会儿一起来看。 </p>
+<h2 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h2><p>这里对多进程的概率一定要有个基础的了解，所以当初连操作系统的课翘了的小伙伴还是要还的咯，然后我们一起打开<a href="https://secure.php.net/manual/zh/book.pcntl.php" target="_blank" rel="noopener">手册</a>吧，我建议有条件的还是看英文版的，中文翻译我就发现了个坑，待会儿一起来看。 </p>
 <h2 id="分身有术"><a href="#分身有术" class="headerlink" title="分身有术"></a>分身有术</h2><p>所以呢，没有点基础知识怎么能理解文档里的内容呢？打开文档首先看到了一个单词：fork。</p>
 <h3 id="fork"><a href="#fork" class="headerlink" title="fork"></a>fork</h3><p>叉子？叉子是分岔的，一个变多个嘛！差不多就是这个意思。创建子进程就用这个命令。这里需要用到pcntl_fork()函数。（可以先简单看一下PHP手册关于这个函数的介绍。）创建一个PHP脚本：</p>
 <pre><code>$pid = pcntl_fork(); // 一旦调用成功，事情就变得有些不同了

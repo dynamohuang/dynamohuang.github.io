@@ -333,7 +333,7 @@
 <p>SSH之所以能够保证安全，原因在于它采用了公钥加密。</p>
 <p>整个过程是这样的：（1）远程主机收到用户的登录请求，把自己的公钥发给用户。（2）用户使用这个公钥，将登录密码加密后，发送回来。（3）远程主机用自己的私钥，解密登录密码，如果密码正确，就同意用户登录。</p>
 <p>这个过程本身是安全的，但是实施的时候存在一个风险：如果有人截获了登录请求，然后冒充远程主机，将伪造的公钥发给用户，那么用户很难辨别真伪。因为不像https协议，SSH协议的公钥是没有证书中心（CA）公证的，也就是说，都是自己签发的。</p>
-<p>可以设想，如果攻击者插在用户与远程主机之间（比如在公共的wifi区域），用伪造的公钥，获取用户的登录密码。再用这个密码登录远程主机，那么SSH的安全机制就荡然无存了。这种风险就是著名的<a href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank" rel="external">“中间人攻击”</a>（Man-in-the-middle attack）。</p>
+<p>可以设想，如果攻击者插在用户与远程主机之间（比如在公共的wifi区域），用伪造的公钥，获取用户的登录密码。再用这个密码登录远程主机，那么SSH的安全机制就荡然无存了。这种风险就是著名的<a href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack" target="_blank" rel="noopener">“中间人攻击”</a>（Man-in-the-middle attack）。</p>
 <p>SSH协议是如何应对的呢？</p>
 <h2 id="known-hosts文件"><a href="#known-hosts文件" class="headerlink" title="known_hosts文件"></a>known_hosts文件</h2><p>如果你是第一次登录对方主机，系统会出现下面的提示：<br><figure class="highlight vbnet"><table><tr><td class="code"><pre><div class="line"> 　　$ ssh user@host</div><div class="line"> </div><div class="line"> 　　The authenticity <span class="keyword">of</span> host <span class="comment">'host (12.18.429.21)' can't be established.</span></div><div class="line"> </div><div class="line"> 　　RSA <span class="keyword">key</span> fingerprint <span class="keyword">is</span> <span class="number">98</span>:<span class="number">2</span>e:d7:e0:de:<span class="number">9</span>f:ac:<span class="number">67</span>:<span class="number">28</span>:c2:<span class="number">42</span>:<span class="number">2</span>d:<span class="number">37</span>:<span class="number">16</span>:<span class="number">58</span>:<span class="number">4</span>d.</div><div class="line"> </div><div class="line"> 　　Are you sure you want <span class="keyword">to</span> <span class="keyword">continue</span> connecting (yes/no)?</div></pre></td></tr></table></figure></p>
 <p>这段话的意思是，无法确认host主机的真实性，只知道它的公钥指纹，问你还想继续连接吗？</p>
@@ -387,8 +387,8 @@
 <p>写入authorized_keys文件后，公钥登录的设置就完成了。</p>
 <h2 id="Github免密操作"><a href="#Github免密操作" class="headerlink" title="Github免密操作"></a>Github免密操作</h2><p>关于这个可以参看github和oschina的说明，相信阅读了上文的介绍就很容易理解相应的说明咯 </p>
 <ul>
-<li><a href="https://help.github.com/articles/connecting-to-github-with-ssh/" target="_blank" rel="external">github</a></li>
-<li><a href="http://git.mydoc.io/?t=154712" target="_blank" rel="external">oschina</a></li>
+<li><a href="https://help.github.com/articles/connecting-to-github-with-ssh/" target="_blank" rel="noopener">github</a></li>
+<li><a href="http://git.mydoc.io/?t=154712" target="_blank" rel="noopener">oschina</a></li>
 </ul>
 <p>==============================================</p>
 <p>（更多使用场景待续，评论有需求再更咯）</p>
@@ -438,8 +438,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/01/Untitled/" rel="prev" title="CentOS 7.3 编译安装 Mysql 5.7">
-                CentOS 7.3 编译安装 Mysql 5.7 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/02/12/重庆区块链行业现状（持续更新）/" rel="prev" title="重庆区块链行业现状（持续更新）">
+                重庆区块链行业现状（持续更新） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -573,7 +573,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SSH公钥登录-amp-Github免密操作"><span class="nav-number">1.</span> <span class="nav-text">SSH公钥登录 & Github免密操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于SSH-amp-安全"><span class="nav-number">1.1.</span> <span class="nav-text">关于SSH&安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#known-hosts文件"><span class="nav-number">1.2.</span> <span class="nav-text">known_hosts文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH公钥登录"><span class="nav-number">1.3.</span> <span class="nav-text">SSH公钥登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github免密操作"><span class="nav-number">1.4.</span> <span class="nav-text">Github免密操作</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SSH公钥登录-amp-Github免密操作"><span class="nav-number">1.</span> <span class="nav-text">SSH公钥登录 &amp; Github免密操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于SSH-amp-安全"><span class="nav-number">1.1.</span> <span class="nav-text">关于SSH&amp;安全</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#known-hosts文件"><span class="nav-number">1.2.</span> <span class="nav-text">known_hosts文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSH公钥登录"><span class="nav-number">1.3.</span> <span class="nav-text">SSH公钥登录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Github免密操作"><span class="nav-number">1.4.</span> <span class="nav-text">Github免密操作</span></a></li></ol></li></ol></div>
             
 
           </div>
