@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="调整框架本身的配置 编辑.env  APP_ENV = production  APP_DEBUG = false php artisan route:cache / php artisan config:cache composer dump-autoload –optimize php artisan optimize  其他可能 开启OPcache php-fpm 配置调优  参考文章 Bu">
+<meta name="description" content="laravel高并发调优笔记 调整框架本身的配置 编辑.env  APP_ENV = production  APP_DEBUG = false php artisan route:cache / php artisan config:cache composer dump-autoload –optimize php artisan optimize  其他可能 开启OPcache php-fp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="蓝山小智">
-<meta property="og:url" content="http://dynamohuang.github.io/2018/03/22/laravel高并发调优笔记/index.html">
+<meta property="og:title" content="laravel高并发调优笔记">
+<meta property="og:url" content="http://dynamohuang.github.io/2018/03/21/laravel高并发调优笔记/index.html">
 <meta property="og:site_name" content="蓝山小智">
-<meta property="og:description" content="调整框架本身的配置 编辑.env  APP_ENV = production  APP_DEBUG = false php artisan route:cache / php artisan config:cache composer dump-autoload –optimize php artisan optimize  其他可能 开启OPcache php-fpm 配置调优  参考文章 Bu">
+<meta property="og:description" content="laravel高并发调优笔记 调整框架本身的配置 编辑.env  APP_ENV = production  APP_DEBUG = false php artisan route:cache / php artisan config:cache composer dump-autoload –optimize php artisan optimize  其他可能 开启OPcache php-fp">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-03-22T00:30:10.737Z">
+<meta property="og:updated_time" content="2018-03-22T00:38:34.072Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="蓝山小智">
-<meta name="twitter:description" content="调整框架本身的配置 编辑.env  APP_ENV = production  APP_DEBUG = false php artisan route:cache / php artisan config:cache composer dump-autoload –optimize php artisan optimize  其他可能 开启OPcache php-fpm 配置调优  参考文章 Bu">
+<meta name="twitter:title" content="laravel高并发调优笔记">
+<meta name="twitter:description" content="laravel高并发调优笔记 调整框架本身的配置 编辑.env  APP_ENV = production  APP_DEBUG = false php artisan route:cache / php artisan config:cache composer dump-autoload –optimize php artisan optimize  其他可能 开启OPcache php-fp">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://dynamohuang.github.io/2018/03/22/laravel高并发调优笔记/"/>
+  <link rel="canonical" href="http://dynamohuang.github.io/2018/03/21/laravel高并发调优笔记/"/>
 
 
 
 
 
-  <title>  | 蓝山小智 </title>
+  <title> laravel高并发调优笔记 | 蓝山小智 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="default">
@@ -250,7 +250,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://dynamohuang.github.io/2018/03/22/laravel高并发调优笔记/">
+    <link itemprop="mainEntityOfPage" href="http://dynamohuang.github.io/2018/03/21/laravel高并发调优笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dynamo Huang">
@@ -271,7 +271,7 @@
             
             
               
-                
+                laravel高并发调优笔记
               
             
           </h2>
@@ -286,8 +286,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-22T08:30:10+08:00">
-                2018-03-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-21T16:48:15+08:00">
+                2018-03-21
               </time>
             
 
@@ -322,7 +322,8 @@
       
 
       
-        <h3 id="调整框架本身的配置"><a href="#调整框架本身的配置" class="headerlink" title="调整框架本身的配置"></a>调整框架本身的配置</h3><ul>
+        <h1 id="laravel高并发调优笔记"><a href="#laravel高并发调优笔记" class="headerlink" title="laravel高并发调优笔记"></a>laravel高并发调优笔记</h1><hr>
+<h3 id="调整框架本身的配置"><a href="#调整框架本身的配置" class="headerlink" title="调整框架本身的配置"></a>调整框架本身的配置</h3><ul>
 <li>编辑.env<br>  APP_ENV = production<br>  APP_DEBUG = false</li>
 <li>php artisan route:cache / php artisan config:cache</li>
 <li>composer dump-autoload –optimize</li>
@@ -617,7 +618,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#调整框架本身的配置"><span class="nav-number">1.</span> <span class="nav-text">调整框架本身的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他可能"><span class="nav-number">2.</span> <span class="nav-text">其他可能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#But…-压测很容易看出，这些很难看到提高十倍以上性能的效果"><span class="nav-number">3.</span> <span class="nav-text">But…..压测很容易看出，这些很难看到提高十倍以上性能的效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#画个饼"><span class="nav-number">4.</span> <span class="nav-text">画个饼</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swoole-laravel-说干就干！"><span class="nav-number">5.</span> <span class="nav-text">swoole+laravel 说干就干！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后再吹水一波swoole"><span class="nav-number">6.</span> <span class="nav-text">最后再吹水一波swoole</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#laravel高并发调优笔记"><span class="nav-number">1.</span> <span class="nav-text">laravel高并发调优笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#调整框架本身的配置"><span class="nav-number">1.0.1.</span> <span class="nav-text">调整框架本身的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他可能"><span class="nav-number">1.0.2.</span> <span class="nav-text">其他可能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#But…-压测很容易看出，这些很难看到提高十倍以上性能的效果"><span class="nav-number">1.0.3.</span> <span class="nav-text">But…..压测很容易看出，这些很难看到提高十倍以上性能的效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#画个饼"><span class="nav-number">1.0.4.</span> <span class="nav-text">画个饼</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swoole-laravel-说干就干！"><span class="nav-number">1.0.5.</span> <span class="nav-text">swoole+laravel 说干就干！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后再吹水一波swoole"><span class="nav-number">1.0.6.</span> <span class="nav-text">最后再吹水一波swoole</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
