@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="框架本身的配置 编辑.env  APP_ENV = production  APP_DEBUG = false php artisan route:cache / php artisan config:cache composer dump-autoload –optimize php artisan optimize  其他可能 开启OPcache php-fpm 配置调优  参考文章 But…">
+<meta name="description" content="调整框架本身的配置 编辑.env  APP_ENV = production  APP_DEBUG = false php artisan route:cache / php artisan config:cache composer dump-autoload –optimize php artisan optimize  其他可能 开启OPcache php-fpm 配置调优  参考文章 Bu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="laravel高并发调优笔记">
-<meta property="og:url" content="http://dynamohuang.github.io/2018/03/21/laravel高并发调优笔记/index.html">
+<meta property="og:title" content="蓝山小智">
+<meta property="og:url" content="http://dynamohuang.github.io/2018/03/22/laravel高并发调优笔记/index.html">
 <meta property="og:site_name" content="蓝山小智">
-<meta property="og:description" content="框架本身的配置 编辑.env  APP_ENV = production  APP_DEBUG = false php artisan route:cache / php artisan config:cache composer dump-autoload –optimize php artisan optimize  其他可能 开启OPcache php-fpm 配置调优  参考文章 But…">
+<meta property="og:description" content="调整框架本身的配置 编辑.env  APP_ENV = production  APP_DEBUG = false php artisan route:cache / php artisan config:cache composer dump-autoload –optimize php artisan optimize  其他可能 开启OPcache php-fpm 配置调优  参考文章 Bu">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-03-21T09:23:34.692Z">
+<meta property="og:updated_time" content="2018-03-22T00:30:10.737Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="laravel高并发调优笔记">
-<meta name="twitter:description" content="框架本身的配置 编辑.env  APP_ENV = production  APP_DEBUG = false php artisan route:cache / php artisan config:cache composer dump-autoload –optimize php artisan optimize  其他可能 开启OPcache php-fpm 配置调优  参考文章 But…">
+<meta name="twitter:title" content="蓝山小智">
+<meta name="twitter:description" content="调整框架本身的配置 编辑.env  APP_ENV = production  APP_DEBUG = false php artisan route:cache / php artisan config:cache composer dump-autoload –optimize php artisan optimize  其他可能 开启OPcache php-fpm 配置调优  参考文章 Bu">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://dynamohuang.github.io/2018/03/21/laravel高并发调优笔记/"/>
+  <link rel="canonical" href="http://dynamohuang.github.io/2018/03/22/laravel高并发调优笔记/"/>
 
 
 
 
 
-  <title> laravel高并发调优笔记 | 蓝山小智 </title>
+  <title>  | 蓝山小智 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="default">
@@ -250,7 +250,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://dynamohuang.github.io/2018/03/21/laravel高并发调优笔记/">
+    <link itemprop="mainEntityOfPage" href="http://dynamohuang.github.io/2018/03/22/laravel高并发调优笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dynamo Huang">
@@ -271,7 +271,7 @@
             
             
               
-                laravel高并发调优笔记
+                
               
             
           </h2>
@@ -286,8 +286,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-21T16:38:21+08:00">
-                2018-03-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-22T08:30:10+08:00">
+                2018-03-22
               </time>
             
 
@@ -322,7 +322,7 @@
       
 
       
-        <h3 id="框架本身的配置"><a href="#框架本身的配置" class="headerlink" title="框架本身的配置"></a>框架本身的配置</h3><ul>
+        <h3 id="调整框架本身的配置"><a href="#调整框架本身的配置" class="headerlink" title="调整框架本身的配置"></a>调整框架本身的配置</h3><ul>
 <li>编辑.env<br>  APP_ENV = production<br>  APP_DEBUG = false</li>
 <li>php artisan route:cache / php artisan config:cache</li>
 <li>composer dump-autoload –optimize</li>
@@ -406,6 +406,40 @@
 <p>都是压测的ab  -n 200  -c 20 三次取的平均值  性能提升了20倍！！！</p>
 <p>不必多说 花10分钟你也来试试  就知道其中的爽了</p>
 <p>bingo,终于可以在golang的同事面前继续说php是世界上最美的语言了…….</p>
+<h3 id="最后再吹水一波swoole"><a href="#最后再吹水一波swoole" class="headerlink" title="最后再吹水一波swoole"></a>最后再吹水一波swoole</h3><p>使用apache bench工具对Nginx静态页、Golang Http程序、PHP7+Swoole Http程序进行压力测试。在同一台机器上，进行并发100共100万次Http请求的基准测试中，QPS对比如下：</p>
+<table>
+<thead>
+<tr>
+<th>软件</th>
+<th>QPS</th>
+<th>软件版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nginx</td>
+<td>164489.92</td>
+<td>nginx/1.4.6 (Ubuntu)</td>
+</tr>
+<tr>
+<td>Golang</td>
+<td>166838.68</td>
+<td>go version go1.5.2 linux/amd64</td>
+</tr>
+<tr>
+<td>PHP7+Swoole</td>
+<td>287104.12</td>
+<td>swoole-1.7.22-alpha</td>
+</tr>
+<tr>
+<td>Nginx-1.9.9</td>
+<td>245058.70</td>
+<td>nginx/1.9.9</td>
+</tr>
+</tbody>
+</table>
+<p>From swoole 官网 <a href="https://wiki.swoole.com/wiki/page/508.html" target="_blank" rel="noopener">去看看</a> </p>
+<p><a href="https://dynamohuang.github.io/">本文转自 dynamohuang.github.io，转发请标注来源</a></p>
 
       
     </div>
@@ -583,7 +617,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#框架本身的配置"><span class="nav-number">1.</span> <span class="nav-text">框架本身的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他可能"><span class="nav-number">2.</span> <span class="nav-text">其他可能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#But…-压测很容易看出，这些很难看到提高十倍以上性能的效果"><span class="nav-number">3.</span> <span class="nav-text">But…..压测很容易看出，这些很难看到提高十倍以上性能的效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#画个饼"><span class="nav-number">4.</span> <span class="nav-text">画个饼</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swoole-laravel-说干就干！"><span class="nav-number">5.</span> <span class="nav-text">swoole+laravel 说干就干！</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#调整框架本身的配置"><span class="nav-number">1.</span> <span class="nav-text">调整框架本身的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他可能"><span class="nav-number">2.</span> <span class="nav-text">其他可能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#But…-压测很容易看出，这些很难看到提高十倍以上性能的效果"><span class="nav-number">3.</span> <span class="nav-text">But…..压测很容易看出，这些很难看到提高十倍以上性能的效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#画个饼"><span class="nav-number">4.</span> <span class="nav-text">画个饼</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swoole-laravel-说干就干！"><span class="nav-number">5.</span> <span class="nav-text">swoole+laravel 说干就干！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后再吹水一波swoole"><span class="nav-number">6.</span> <span class="nav-text">最后再吹水一波swoole</span></a></li></ol></div>
             
 
           </div>
