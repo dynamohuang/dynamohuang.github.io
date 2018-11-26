@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://dynamohuang.github.io/2018/11/26/composer-yarn-npm%E7%AD%89%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E4%B8%AD-lock%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%9C%E7%94%A8%E5%8F%8A%E6%AD%A3%E7%A1%AE%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2018-11-26T03:45:52.774Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://dynamohuang.github.io/2018/03/21/laravel%E9%AB%98%E5%B9%B6%E5%8F%91%E8%B0%83%E4%BC%98%E7%AC%94%E8%AE%B0/</loc>
     
     <lastmod>2018-03-22T00:38:34.072Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>http://dynamohuang.github.io/about/index.html</loc>
     
     <lastmod>2018-02-12T03:22:50.024Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://dynamohuang.github.io/2018/02/12/%E9%87%8D%E5%BA%86%E5%8C%BA%E5%9D%97%E9%93%BE%E8%A1%8C%E4%B8%9A%E7%8E%B0%E7%8A%B6%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/</loc>
-    
-    <lastmod>2018-02-12T03:05:30.256Z</lastmod>
     
   </url>
   
